@@ -97,7 +97,7 @@
             <div class="cs_nav cs_medium">
               <ul class="cs_nav_list">
                 <li><a href="{% url "main:index" %}">Home</a></li>
-                <li><a href="shop.html">Product</a></li>
+                <li><a href="{% url "goods:index" %}">Product</a></li>
                 <li><a href="cart.html">Cart</a></li>
                 <li><a href="{% url "main:about" %}">About</a></li>
                 <li><a href="{% url "main:contact" %}">Contact</a></li>
@@ -191,7 +191,7 @@
                   <h3 class="cs_footer_widget_title cs_fs_21 cs_semibold">Get to know</h3>
                   <ul>
                     <li><a href="{% url "main:about" %}">About Us</a></li>
-                    <li><a href="shop.html">Product</a></li>
+                    <li><a href="{% url "goods:index" %}">Product</a></li>
                     <li><a href="{% url "main:contact" %}">Contact Us</a></li>
                   </ul>
                 </div>
