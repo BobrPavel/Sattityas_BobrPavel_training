@@ -118,7 +118,10 @@
                   </ul>
                 </li>
               </ul>
+             
             </div><!-- .cs_filter_widget -->
+            
+            {% comment "" %}
             <div class="cs_filter_widget">
               <h3 class="cs_filter_widget_title cs_medium cs_fs_18">Price <span></span></h3>
               <div class="cs_range_slider_wrap">
@@ -130,8 +133,10 @@
                 <div class="cs_amount_wrap">
                   <input type="text" id="amount" readonly>
                 </div>
-              </div>
+              </div>         
             </div><!-- .cs_filter_widget -->
+            {% endcomment %}
+
             <div class="cs_filter_widget">
               <h3 class="cs_filter_widget_title cs_medium cs_fs_18">Size <span></span></h3>
               <ul class="cs_size_filter_list cs_mp0">
@@ -316,37 +321,53 @@
         </div>
       </div>
       <div class="cs_product_grid cs_product_grid_4 cs_grid_view">
-        <div class="cs_product_col">
-          <div class="cs_product cs_style_1">
-            <div class="cs_product_thumb position-relative">
-              <img src="{% static "assets/img/product1.png" %}" alt="Product Image" class="w-100">
-              <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">-25%</div>
-              <div class="cs_cart_badge position-absolute">
-              </div>
-              <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-            </div>
-            <div class="cs_product_info text-center">
-              <h3 class="cs_product_title cs_fs_21 cs_medium">
-                <a href="product_details.html">Pure black cotton men T-shirt</a>
-              </h3>
-              <div class="cs_single_product_review">
-                <div class="cs_rating_container">
-                  <div class="cs_rating cs_size_sm" data-rating="4.5">
-                    <div class="cs_rating_percentage"></div>
-                  </div>
+        
+        <!-- Product cart -->
+        {% for product in goods %}
+          <div class="cs_product_col">
+            <div class="cs_product cs_style_1">
+              <div class="cs_product_thumb position-relative">
+                {% if product.image %}
+                  <img src="{{product.image.url}}" alt="Product Image" class="w-100">          
+                {% else %}  
+                  {% static "assets/img/Image_not_found.png" %}
+                {% endif %}   
+          
+                {% if  product.discount %}
+                  <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">-{{product.discount}}%</div>
+                {% endif %}
+                <div class="cs_cart_badge position-absolute">
                 </div>
-                <span>(5)</span>
-                <span>Stock: <span class="cs_accent_color">12 in stock</span></span>
+                <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
               </div>
-              <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
-              <p class="cs_product_desc">Our men black t-shirt offers a classic fit and is made from high-quality pure cotton <br>materials to keep you feeling and looking great.</p>
-              <div class="cs_action_btns">
-                <a href="#" class="cs_btn cs_style_1 cs_fs_16 cs_medium cs_accent_btn">Add to Cart</a>
-                <button class="cs_heart_btn"><i class="fa-regular fa-heart"></i></button>
+              <div class="cs_product_info text-center">
+                <h3 class="cs_product_title cs_fs_21 cs_medium">
+                  <a href="product_details.html">{{product.name}}t</a>
+                </h3>
+                <div class="cs_single_product_review">
+                  <div class="cs_rating_container">
+                    <div class="cs_rating cs_size_sm" data-rating="4.5">
+                      <div class="cs_rating_percentage"></div>
+                    </div>
+                  </div>
+                  <span>(5)</span>
+                  <span>На складе: <span class="cs_accent_color">{{product.quantity}} шт</span></span>
+                </div>
+                {% if product.discount %}
+                  <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{product.price}}</s> ${{product.sell_price}} </p>
+                {% else %}
+                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">{{product.price}}</p>
+                {% endif %}
+
+                
+                <p class="cs_product_desc">{{product.description}}</p>
+                <div class="cs_action_btns">
+                  <a href="#" class="cs_btn cs_style_1 cs_fs_16 cs_medium cs_accent_btn">Add to Cart</a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        {% endfor %}
       </div>
       <div class="cs_height_75 cs_height_lg_50"></div>
       <ul class="cs_pagination cs_fs_21 cs_semibold cs_mp0">

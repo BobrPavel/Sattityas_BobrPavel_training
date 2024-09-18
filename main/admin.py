@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from main.models import Mailing, Comment
+
+admin.site.register(Mailing)
+admin.site.register(Comment)
