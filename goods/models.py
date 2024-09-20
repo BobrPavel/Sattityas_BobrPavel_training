@@ -36,11 +36,15 @@ class Products(models.Model):
     price = models.DecimalField(default=0, max_digits=7, decimal_places=0, verbose_name='Цена')
     discount = models.DecimalField(default=0, max_digits=4, decimal_places=0, verbose_name='Скидка в %')
     quantity = models.PositiveBigIntegerField(default=0, verbose_name='Количество')
-    people_category = models.CharField(max_length=150, null=True, verbose_name='Пол')
+    people_category = models.ForeignKey(to=People_categorys, blank=True, null=True, on_delete=models.CASCADE, verbose_name='Пол')
     category = models.ForeignKey(to=Categories, on_delete=models.CASCADE, verbose_name='Категория')
+    sizе = models.CharField(max_length=150, blank=True, null=True, verbose_name='Размер')
+    brand = models.CharField(max_length=150, blank=True, null=True, verbose_name='Бренд')
+    rating = models.CharField(max_length=150, blank=True, null=True, verbose_name='Рейтинг')
     featured_item = models.BooleanField(blank=True, null=True, verbose_name='Рекомендовано')
     new_item = models.BooleanField(blank=True, null=True, verbose_name='Новинка')
     top_item = models.BooleanField(blank=True, null=True, verbose_name='Лучшее')
+
     
 
     class Meta:

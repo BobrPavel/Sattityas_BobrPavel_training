@@ -13,7 +13,7 @@
             <div class="cs_hero_text">
               <h1 class="cs_heto_title cs_fs_67 cs_bold">Winter Collection For Women</h1>
               <p class="cs_heto_subtitle">we are more than just an online shopping destination; we're your personal gateway to a world of fashion, trendsetting styles, and unparalleled convenience. We believe that fashion is a reflection of your individuality, and our mission is to make every shopping experience with us.</p>
-              <a href="shop.html" class="cs_btn cs_style_1 cs_fs_16 cs_medium">Shop Now</a>
+              <a href="{% url "goods:index" %}" class="cs_btn cs_style_1 cs_fs_16 cs_medium">Shop Now</a>
             </div>
             <div class="cs_hero_thumb cs_bg_filed" data-src="{% static "assets/img/hero1.jpg" %}"></div>
           </div>
@@ -23,7 +23,7 @@
             <div class="cs_hero_text">
               <h1 class="cs_heto_title cs_fs_67 cs_bold">T-Shirt Collection For Women</h1>
               <p class="cs_heto_subtitle">we are more than just an online shopping destination; we're your personal gateway to a world of fashion, trendsetting styles, and unparalleled convenience. We believe that fashion is a reflection of your individuality, and our mission is to make every shopping experience with us.</p>
-              <a href="shop.html" class="cs_btn cs_style_1 cs_fs_16 cs_medium">Shop Now</a>
+              <a href="{% url "goods:index" %}" class="cs_btn cs_style_1 cs_fs_16 cs_medium">Shop Now</a>
             </div>
             <div class="cs_hero_thumb cs_bg_filed" data-src="{% static "assets/img/hero3.jpg" %}"></div>
           </div>
@@ -33,7 +33,7 @@
             <div class="cs_hero_text">
               <h1 class="cs_heto_title cs_fs_67 cs_bold">Skirts Collection For Women</h1>
               <p class="cs_heto_subtitle">we are more than just an online shopping destination; we're your personal gateway to a world of fashion, trendsetting styles, and unparalleled convenience. We believe that fashion is a reflection of your individuality, and our mission is to make every shopping experience with us.</p>
-              <a href="shop.html" class="cs_btn cs_style_1 cs_fs_16 cs_medium">Shop Now</a>
+              <a href="{% url "goods:index" %}" class="cs_btn cs_style_1 cs_fs_16 cs_medium">Shop Now</a>
             </div>
             <div class="cs_hero_thumb cs_bg_filed" data-src="{% static "assets/img/hero4.jpg" %}">
             </div>
@@ -185,140 +185,55 @@
       <h2 class="cs_section_title cs_fs_50 cs_bold mb-0 text-center">Featured Items</h2>
       <div class="cs_height_63 cs_height_lg_35"></div>
       <ul class="cs_tab_links cs_style_1 cs_mp0">
-        <li class="active"><a href="#tab_tshirt" class="cs_fs_16 cs_medium">T-shirt</a></li>
-        <li><a href="#tab_jeans" class="cs_fs_16 cs_medium">Jeans</a></li>
+        <li class="active"><a href="#tab_jeans" class="cs_fs_16 cs_medium">Jeans</a></li>
+        <li><a href="#tab_tshirt" class="cs_fs_16 cs_medium">T-shirt</a></li>
         <li><a href="#tab_cshirt" class="cs_fs_16 cs_medium">Casual Shirt</a></li>
-        
-        {% comment %} 
-        <li><a href="#tab_Dresses" class="cs_fs_16 cs_medium">Dresses</a></li> 
-        <li><a href="#tab_Suits" class="cs_fs_16 cs_medium">Suits</a></li> 
-        {% endcomment %}
-
+        <li><a href="#tab_dresses" class="cs_fs_16 cs_medium">Dresses</a></li> 
+        <li><a href="#tab_suits" class="cs_fs_16 cs_medium">Suits</a></li> 
         <li><a href="#tab_accessories" class="cs_fs_16 cs_medium">Accessories</a></li>
       </ul>
     </div>
     <div class="container-fluid">
       <div class="cs_tabs">
-        <div class="cs_tab active" id="tab_tshirt">
+
+
+        <div class="cs_tab active" id="tab_jeans">
           <div class="cs_slider position-relative cs_hover_arrow">
             <div class="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="0"
               data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="2" data-md-slides="2"
               data-lg-slides="3" data-add-slides="4">
               <div class="cs_slider_wrapper">
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product1.png" %}" alt="Product Image">
-                      <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">-25%</div>
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
+                {% for jeanss in jeans %} 
+                  <div class="slick_slide_in">
+                    <div class="cs_product cs_style_1">
+                      <div class="cs_product_thumb position-relative">
+                        {% if jeanss.image %}
+                          <img src="{{jeanss.image.url}}" alt="Product Image">
+                        {% else %}
+                          {% static "assets/img/Image_not_found.png" %}  
+                        {% endif %}
+                      
+                        {% if  jeanss.discount %}
+                          <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">Скидка {{jeanss.discount}}%</div>
+                        {% endif %}
+                      
+                        <div class="cs_cart_badge position-absolute">
+                        </div>
+                        <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
                       </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Pure black cotton men T-shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
+                      <div class="cs_product_info text-center">
+                        <h3 class="cs_product_title cs_fs_21 cs_medium">
+                          <a href="{% url "goods:product" jeanss.id %}">{{jeanss.name}}</a>
+                        </h3>    
+                      {% if jeanss.discount %}
+                        <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{jeanss.price}}</s> ${{jeanss.sell_price}} </p>
+                      {% else %}
+                        <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">${{jeanss.price}}</p>
+                      {% endif %} 
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product2.png" %}" alt="Product Image">
-                      <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">-8%</div>
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Gray color cotton men T-shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$220.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product3.png" %}" alt="Product Image">
-                      <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">-12%</div>
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Pure black cotton men T-shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product8.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Premium men blue denim jacket</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product26.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">
-                        Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Men casual check shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
+                {% endfor %}
               </div>
             </div>
             <div class="cs_slider_arrows cs_style_3 cs_hide_mobile">
@@ -340,125 +255,45 @@
             <div class="cs_pagination cs_style_2 cs_hide_desktop"></div>
           </div>
         </div>
-        <div class="cs_tab" id="tab_jeans">
+        <div class="cs_tab" id="tab_tshirt">
           <div class="cs_slider position-relative cs_hover_arrow">
             <div class="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="0"
               data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="2" data-md-slides="2"
               data-lg-slides="3" data-add-slides="4">
               <div class="cs_slider_wrapper">
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product26.png" %}" alt="Product Image">
-                      <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">-12%</div>
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
+
+                {% for t_shirt in t_shirts %} 
+                  <div class="slick_slide_in">
+                    <div class="cs_product cs_style_1">
+                      <div class="cs_product_thumb position-relative">
+                        {% if t_shirt.image %}
+                          <img src="{{t_shirt.image.url}}" alt="Product Image">
+                        {% else %}
+                          {% static "assets/img/Image_not_found.png" %}  
+                        {% endif %}
+                      
+                        {% if  t_shirt.discount %}
+                          <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">Скидка {{t_shirt.discount}}%</div>
+                        {% endif %}
+                      
+                        <div class="cs_cart_badge position-absolute">
+                        </div>
+                        <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
                       </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Men casual check shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
+                      <div class="cs_product_info text-center">
+                        <h3 class="cs_product_title cs_fs_21 cs_medium">
+                          <a href="{% url "goods:product" t_shirt.id %}">{{t_shirt.name}}</a>
+                        </h3>    
+                      {% if t_shirt.discount %}
+                        <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{t_shirt.price}}</s> ${{t_shirt.sell_price}} </p>
+                      {% else %}
+                        <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">${{t_shirt.price}}</p>
+                      {% endif %} 
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product8.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Premium men blue denim jacket</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product9.png" %}" alt="Product Image">
-                      <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">-8%</div>
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Awesome striped casual shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$220.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product3.png" %}" alt="Product Image">
-                      <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">-12%</div>
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Pure black cotton men T-shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product26.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Men casual check shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
+                {% endfor %}
+
               </div>
             </div>
             <div class="cs_slider_arrows cs_style_3 cs_hide_mobile">
@@ -486,118 +321,39 @@
               data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="2" data-md-slides="2"
               data-lg-slides="3" data-add-slides="4">
               <div class="cs_slider_wrapper">
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product27.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
+               
+                {% for shirt in shirts %} 
+                  <div class="slick_slide_in">
+                    <div class="cs_product cs_style_1">
+                      <div class="cs_product_thumb position-relative">
+                        {% if shirt.image %}
+                          <img src="{{shirt.image.url}}" alt="Product Image">
+                        {% else %}
+                          {% static "assets/img/Image_not_found.png" %}  
+                        {% endif %}
+                      
+                        {% if  shirt.discount %}
+                          <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">Скидка {{shirt.discount}}%</div>
+                        {% endif %}
+                      
+                        <div class="cs_cart_badge position-absolute">
+                        </div>
+                        <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
                       </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Pretty woman peach long dress</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
+                      <div class="cs_product_info text-center">
+                        <h3 class="cs_product_title cs_fs_21 cs_medium">
+                          <a href="{% url "goods:product" shirt.id %}">{{shirt.name}}</a>
+                        </h3>    
+                      {% if shirt.discount %}
+                        <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{shirt.price}}</s> ${{shirt.sell_price}} </p>
+                      {% else %}
+                        <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">${{shirt.price}}</p>
+                      {% endif %} 
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product16.png" %}" alt="Product Image">
-                      <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">-8%</div>
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Gray color cotton men T-shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$220.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product28.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Young woman pink mini dress</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product4.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Pure black cotton men T-shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product26.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">
-                        Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Men casual check shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
+                {% endfor %}
+
               </div>
             </div>
             <div class="cs_slider_arrows cs_style_3 cs_hide_mobile">
@@ -619,122 +375,43 @@
             <div class="cs_pagination cs_style_2 cs_hide_desktop"></div>
           </div>
         </div>
-        <div class="cs_tab" id="tab_leggings">
+        <div class="cs_tab" id="tab_dresses">
           <div class="cs_slider position-relative cs_hover_arrow">
             <div class="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="0"
               data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="2" data-md-slides="2"
               data-lg-slides="3" data-add-slides="4">
               <div class="cs_slider_wrapper">
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product5.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
+                {% for dress in dresses %} 
+                  <div class="slick_slide_in">
+                    <div class="cs_product cs_style_1">
+                      <div class="cs_product_thumb position-relative">
+                        {% if dress.image %}
+                          <img src="{{dress.image.url}}" alt="Product Image">
+                        {% else %}
+                          {% static "assets/img/Image_not_found.png" %}  
+                        {% endif %}
+                      
+                        {% if  dress.discount %}
+                          <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">Скидка {{dress.discount}}%</div>
+                        {% endif %}
+                      
+                        <div class="cs_cart_badge position-absolute">
+                        </div>
+                        <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
                       </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Satin silk sleeping were</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$220.00</p>
+                      <div class="cs_product_info text-center">
+                        <h3 class="cs_product_title cs_fs_21 cs_medium">
+                          <a href="{% url "goods:product" dress.id %}">{{dress.name}}</a>
+                        </h3>    
+                      {% if dress.discount %}
+                        <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{dress.price}}</s> ${{dress.sell_price}} </p>
+                      {% else %}
+                        <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">${{dress.price}}</p>
+                      {% endif %} 
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product6.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Top gorgeous woman dress</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product7.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Velvet touch women tops</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product28.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Young woman pink mini dress</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product26.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Men casual check shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
+                {% endfor %}
               </div>
             </div>
             <div class="cs_slider_arrows cs_style_3 cs_hide_mobile">
@@ -756,261 +433,43 @@
             <div class="cs_pagination cs_style_2 cs_hide_desktop"></div>
           </div>
         </div>
-        <div class="cs_tab" id="tab_skirts">
+        <div class="cs_tab" id="tab_suits">
           <div class="cs_slider position-relative cs_hover_arrow">
             <div class="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="0"
               data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="2" data-md-slides="2"
               data-lg-slides="3" data-add-slides="4">
               <div class="cs_slider_wrapper">
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product4.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
+                {% for suit in suits %} 
+                  <div class="slick_slide_in">
+                    <div class="cs_product cs_style_1">
+                      <div class="cs_product_thumb position-relative">
+                        {% if suit.image %}
+                          <img src="{{suit.image.url}}" alt="Product Image">
+                        {% else %}
+                          {% static "assets/img/Image_not_found.png" %}  
+                        {% endif %}
+                      
+                        {% if  suit.discount %}
+                          <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">Скидка {{suit.discount}}%</div>
+                        {% endif %}
+                      
+                        <div class="cs_cart_badge position-absolute">
+                        </div>
+                        <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
                       </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Pure cotton women Skhirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
+                      <div class="cs_product_info text-center">
+                        <h3 class="cs_product_title cs_fs_21 cs_medium">
+                          <a href="{% url "goods:product" suit.id %}">{{suit.name}}</a>
+                        </h3>    
+                      {% if suit.discount %}
+                        <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{suit.price}}</s> ${{suit.sell_price}} </p>
+                      {% else %}
+                        <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">${{suit.price}}</p>
+                      {% endif %} 
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product5.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Satin silk sleeping were</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$220.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product6.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Top gorgeous woman dress</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product7.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Velvet touch women tops</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product26.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Men casual check shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="cs_slider_arrows cs_style_3 cs_hide_mobile">
-              <div class="cs_left_arrow cs_slider_arrow cs_accent_color">
-                <span>
-                  <svg width="36" height="16" viewBox="0 0 36 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0.292892 7.29289C-0.0976295 7.68342 -0.0976295 8.31658 0.292892 8.70711L6.65685 15.0711C7.04738 15.4616 7.68054 15.4616 8.07107 15.0711C8.46159 14.6805 8.46159 14.0474 8.07107 13.6569L2.41422 8L8.07107 2.34315C8.46159 1.95262 8.46159 1.31946 8.07107 0.928932C7.68054 0.538408 7.04738 0.538408 6.65685 0.928932L0.292892 7.29289ZM36 7L1 7V9L36 9V7Z" fill="currentColor" />
-                  </svg>
-                </span>
-              </div>
-              <div class="cs_right_arrow cs_slider_arrow cs_accent_color">
-                <span>
-                  <svg width="36" height="16" viewBox="0 0 36 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M35.7071 8.70711C36.0976 8.31659 36.0976 7.68342 35.7071 7.2929L29.3431 0.928935C28.9526 0.53841 28.3195 0.53841 27.9289 0.928935C27.5384 1.31946 27.5384 1.95262 27.9289 2.34315L33.5858 8L27.9289 13.6569C27.5384 14.0474 27.5384 14.6805 27.9289 15.0711C28.3195 15.4616 28.9526 15.4616 29.3431 15.0711L35.7071 8.70711ZM-8.74228e-08 9L35 9L35 7L8.74228e-08 7L-8.74228e-08 9Z" fill="currentColor" />
-                  </svg>
-                </span>
-              </div>
-            </div>
-            <div class="cs_pagination cs_style_2 cs_hide_desktop"></div>
-          </div>
-        </div>
-        <div class="cs_tab" id="tab_shoes">
-          <div class="cs_slider position-relative cs_hover_arrow">
-            <div class="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="0"
-              data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="2" data-md-slides="2"
-              data-lg-slides="3" data-add-slides="4">
-              <div class="cs_slider_wrapper">
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product10.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Premium men blue denim jacket</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product11.png" %}" alt="Product Image">
-                      <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">-12%</div>
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Cotton black suit for men </a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product26.png" %}" alt="Product Image">
-                      <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">-12%</div>
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Men casual check shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product27.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Pretty woman peach long dress</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product26.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Men casual check shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
+                {% endfor %}
               </div>
             </div>
             <div class="cs_slider_arrows cs_style_3 cs_hide_mobile">
@@ -1038,118 +497,37 @@
               data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="2" data-md-slides="2"
               data-lg-slides="3" data-add-slides="4">
               <div class="cs_slider_wrapper">
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product5.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
+                {% for accessor in accessories %} 
+                  <div class="slick_slide_in">
+                    <div class="cs_product cs_style_1">
+                      <div class="cs_product_thumb position-relative">
+                        {% if accessor.image %}
+                          <img src="{{accessor.image.url}}" alt="Product Image">
+                        {% else %}
+                          {% static "assets/img/Image_not_found.png" %}  
+                        {% endif %}
+                      
+                        {% if  accessor.discount %}
+                          <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">Скидка {{accessor.discount}}%</div>
+                        {% endif %}
+                      
+                        <div class="cs_cart_badge position-absolute">
+                        </div>
+                        <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
                       </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Satin silk sleeping were</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$220.00</p>
+                      <div class="cs_product_info text-center">
+                        <h3 class="cs_product_title cs_fs_21 cs_medium">
+                          <a href="{% url "goods:product" accessor.id %}">{{accessor.name}}</a>
+                        </h3>    
+                      {% if accessor.discount %}
+                        <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{accessor.price}}</s> ${{accessor.sell_price}} </p>
+                      {% else %}
+                        <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">${{accessor.price}}</p>
+                      {% endif %} 
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product3.png" %}" alt="Product Image">
-                      <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">-12%</div>
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Pure black cotton women T-shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product8.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Premium men blue denim jacket</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product1.png" %}" alt="Product Image">
-                      <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">-25%</div>
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium  position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Pure black cotton men T-shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="slick_slide_in">
-                  <div class="cs_product cs_style_1">
-                    <div class="cs_product_thumb position-relative">
-                      <img src="{% static "assets/img/product26.png" %}" alt="Product Image">
-                      <div class="cs_cart_badge position-absolute">
-                        <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-heart"></i>
-                        </a>
-                        <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                          <i class="fa-regular fa-eye"></i>
-                        </a>
-                      </div>
-                      <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-                    </div>
-                    <div class="cs_product_info text-center">
-                      <h3 class="cs_product_title cs_fs_21 cs_medium">
-                        <a href="product_details.html">Men casual check shirt</a>
-                      </h3>
-                      <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-                    </div>
-                  </div>
-                </div>
+                {% endfor %}
               </div>
               <div class="cs_slider_arrows cs_style_3 cs_hide_mobile">
                 <div class="cs_left_arrow cs_slider_arrow cs_accent_color">
@@ -1233,7 +611,7 @@
             <div class="cs_card_info">
               <h2 class="cs_card_title cs_fs_50 cs_bold">Explore our latest winter fashion collection</h2>
               <p class="cs_card_subtitle">We believe that winter fashion should be both functional and fabulous. <br> Our Winter Fashion Collection reflects our commitment to quality, comfort <br> and style. Embrace the season with confidence.</p>
-              <a href="shop.html" class="cs_btn cs_style_1 cs_fs_16 cs_medium">Shop Now</a>
+              <a href="{% url "goods:index" %}" class="cs_btn cs_style_1 cs_fs_16 cs_medium">Shop Now</a>
             </div>
           </div>
         </div>
@@ -1263,120 +641,39 @@
     <div class="container-fluid">
       <div class="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="0" data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="2" data-md-slides="2" data-lg-slides="3" data-add-slides="4">
         <div class="cs_slider_wrapper">
+        {% for new_item in new_items %} 
           <div class="slick_slide_in">
             <div class="cs_product cs_style_1">
               <div class="cs_product_thumb position-relative">
-                <img src="{% static "assets/img/product4.png" %}" alt="Product Image">
+                {% if new_item.image %}
+                  <img src="{{new_item.image.url}}" alt="Product Image">
+                {% else %}
+                  {% static "assets/img/Image_not_found.png" %}  
+                {% endif %}
+
+                {% if  new_item.discount %}
+                  <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">Скидка {{new_item.discount}}%</div>
+                {% endif %}
+
                 <div class="cs_cart_badge position-absolute">
-                  <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-heart"></i>
-                  </a>
-                  <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-eye"></i>
-                  </a>
                 </div>
                 <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
               </div>
               <div class="cs_product_info text-center">
                 <h3 class="cs_product_title cs_fs_21 cs_medium">
-                  <a href="product_details.html">Pure cotton women Skhirt</a>
+                  <a href="{% url "goods:product" new_item.id %}">{{new_item.name}}</a>
                 </h3>
-                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
+
+              {% if new_item.discount %}
+                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{new_item.price}}</s> ${{new_item.sell_price}} </p>
+              {% else %}
+                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">${{new_item.price}}</p>
+              {% endif %}
+              
               </div>
             </div>
           </div>
-          <div class="slick_slide_in">
-            <div class="cs_product cs_style_1">
-              <div class="cs_product_thumb position-relative">
-                <img src="{% static "assets/img/product5.png" %}" alt="Product Image">
-                <div class="cs_cart_badge position-absolute">
-                  <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-heart"></i>
-                  </a>
-                  <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-eye"></i>
-                  </a>
-                </div>
-                <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">
-                  Add To Cart</a>
-              </div>
-              <div class="cs_product_info text-center">
-                <h3 class="cs_product_title cs_fs_21 cs_medium">
-                  <a href="product_details.html">Satin silk sleeping were</a>
-                </h3>
-                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$220.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="slick_slide_in">
-            <div class="cs_product cs_style_1">
-              <div class="cs_product_thumb position-relative">
-                <img src="{% static "assets/img/product6.png" %}" alt="Product Image">
-                <div class="cs_cart_badge position-absolute">
-                  <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-heart"></i>
-                  </a>
-                  <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-eye"></i>
-                  </a>
-                </div>
-                <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">
-                  Add To Cart</a>
-              </div>
-              <div class="cs_product_info text-center">
-                <h3 class="cs_product_title cs_fs_21 cs_medium">
-                  <a href="product_details.html">Top gorgeous woman dress</a>
-                </h3>
-                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="slick_slide_in">
-            <div class="cs_product cs_style_1">
-              <div class="cs_product_thumb position-relative">
-                <img src="{% static "assets/img/product7.png" %}" alt="Product Image">
-                <div class="cs_cart_badge position-absolute">
-                  <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-heart"></i>
-                  </a>
-                  <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-eye"></i>
-                  </a>
-                </div>
-                <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">
-                  Add To Cart</a>
-              </div>
-              <div class="cs_product_info text-center">
-                <h3 class="cs_product_title cs_fs_21 cs_medium">
-                  <a href="product_details.html">Velvet touch women tops</a>
-                </h3>
-                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="slick_slide_in">
-            <div class="cs_product cs_style_1">
-              <div class="cs_product_thumb position-relative">
-                <img src="{% static "assets/img/product26.png" %}" alt="Product Image">
-                <div class="cs_cart_badge position-absolute">
-                  <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-heart"></i>
-                  </a>
-                  <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-eye"></i>
-                  </a>
-                </div>
-                <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">
-                  Add To Cart</a>
-              </div>
-              <div class="cs_product_info text-center">
-                <h3 class="cs_product_title cs_fs_21 cs_medium">
-                  <a href="product_details.html">Men casual check shirt</a>
-                </h3>
-                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-              </div>
-            </div>
-          </div>
+        {% endfor %} 
         </div>
       </div>
       <div class="cs_pagination cs_style_2 cs_hide_desktop"></div>
@@ -1440,42 +737,22 @@
           data-add-slides="1">
           <div class="container">
             <div class="cs_slider_wrapper">
+
+            {% for comments in coments %}
               <div class="slick_slide_in">
                 <div class="cs_testimonial cs_style_1 text-center">
-                  <blockquote class="cs_testimonial_text cs_fs_21 cs_semibold">Shopping at Sattiyas has been an absolute delight! I've had the pleasure of being a <br> customer for the past year, and I can confidently say that this is my go-to online shopping <br> destination. Highly recommend!</blockquote>
+                  <blockquote class="cs_testimonial_text cs_fs_21 cs_semibold">{{comments.text}}</blockquote>
                   <div class="cs_testimonial_user">
                     <div class="cs_avatar_thumb">
-                      <img src="{% static "assets/img/user.png" %}" alt="Avatar">
+                      <img src={{comments.image.url}} alt="Avatar">
                     </div>
-                    <h4 class="cs_avatar_title cs_fs_21 cs_semibold mb-0">Bonal Ahmad</h4>
-                    <p class="cs_avatar_subtitle mb-0">From London</p>
+                    <h4 class="cs_avatar_title cs_fs_21 cs_semibold mb-0">{{comments.name}}</h4>
+                    <p class="cs_avatar_subtitle mb-0">{{comments.city}}</p>
                   </div>
                 </div>
               </div>
-              <div class="slick_slide_in">
-                <div class="cs_testimonial cs_style_1 text-center">
-                  <blockquote class="cs_testimonial_text cs_fs_21 cs_semibold">Shopping at Sattiyas has been an absolute delight! I've had the pleasure of being a <br> customer for the past year, and I can confidently say that this is my go-to online shopping <br> destination. Highly recommend!</blockquote>
-                  <div class="cs_testimonial_user">
-                    <div class="cs_avatar_thumb">
-                      <img src="{% static "assets/img/user2.png" %}" alt="Avatar">
-                    </div>
-                    <h4 class="cs_avatar_title cs_fs_21 cs_semibold mb-0">Jhon Doe</h4>
-                    <p class="cs_avatar_subtitle mb-0">From UK</p>
-                  </div>
-                </div>
-              </div>
-              <div class="slick_slide_in">
-                <div class="cs_testimonial cs_style_1 text-center">
-                  <blockquote class="cs_testimonial_text cs_fs_21 cs_semibold">Shopping at Sattiyas has been an absolute delight! I've had the pleasure of being a <br> customer for the past year, and I can confidently say that this is my go-to online shopping <br> destination. Highly recommend!</blockquote>
-                  <div class="cs_testimonial_user">
-                    <div class="cs_avatar_thumb">
-                      <img src="{% static "assets/img/user3.png" %}" alt="Avatar">
-                    </div>
-                    <h4 class="cs_avatar_title cs_fs_21 cs_semibold mb-0">Kalio Hokeo</h4>
-                    <p class="cs_avatar_subtitle mb-0">From London</p>
-                  </div>
-                </div>
-              </div>
+            {% endfor %}
+
             </div>
           </div>
         </div>
@@ -1511,7 +788,7 @@
             <div class="cs_card_info">
               <h2 class="cs_card_title cs_fs_50 cs_bold">Explore latest handcraft exclusive collection</h2>
               <p class="cs_card_subtitle">We believe that winter fashion should be both functional and fabulous. Our <br> Winter Fashion Collection reflects our commitment to quality, comfort, and <br> style. Embrace the season with confidence.</p>
-              <a href="shop.html" class="cs_btn cs_style_1 cs_fs_16 cs_medium">Shop Now</a>
+              <a href="{% url "goods:index" %}" class="cs_btn cs_style_1 cs_fs_16 cs_medium">Shop Now</a>
             </div>
           </div>
           <div class="col-lg-6">
@@ -1528,7 +805,7 @@
     <div class="container">
       <div class="cs_section_heading cs_style_1">
         <div class="cs_section_heading_in">
-          <h2 class="cs_section_title cs_fs_50 cs_bold mb-0">Top selling accessories</h2>
+          <h2 class="cs_section_title cs_fs_50 cs_bold mb-0">Top selling</h2>
         </div>
         <div class="cs_slider_arrows cs_style_2 cs_hide_mobile">
           <div class="cs_left_arrow cs_slider_arrow cs_accent_color">
@@ -1546,121 +823,42 @@
         data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="2" data-md-slides="2"
         data-lg-slides="3" data-add-slides="4">
         <div class="cs_slider_wrapper">
-          <div class="slick_slide_in">
-            <div class="cs_product cs_style_1">
-              <div class="cs_product_thumb position-relative">
-                <img src="{% static "assets/img/product12.png" %}" alt="Product Image">
-                <div class="cs_cart_badge position-absolute">
-                  <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-heart"></i>
-                  </a>
-                  <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-eye"></i>
-                  </a>
+          
+          {% for top_item in top_items %} 
+            <div class="slick_slide_in">
+              <div class="cs_product cs_style_1">
+                <div class="cs_product_thumb position-relative">
+                  {% if top_item.image %}
+                    <img src="{{top_item.image.url}}" alt="Product Image">
+                  {% else %}
+                    {% static "assets/img/Image_not_found.png" %}  
+                  {% endif %}
+
+                  {% if  top_item.discount %}
+                    <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">Скидка {{top_item.discount}}%</div>
+                  {% endif %}
+
+                  <div class="cs_cart_badge position-absolute">
+                  </div>
+                  <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
                 </div>
-                <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">
-                  Add To Cart</a>
-              </div>
-              <div class="cs_product_info text-center">
-                <h3 class="cs_product_title cs_fs_21 cs_medium">
-                  <a href="product_details.html">Ladies leather handbag</a>
-                </h3>
-                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
+                <div class="cs_product_info text-center">
+                  <h3 class="cs_product_title cs_fs_21 cs_medium">
+                    <a href="{% url "goods:product" top_item.id %}">{{top_item.name}}</a>
+                  </h3>
+
+                {% if top_item.discount %}
+                  <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{top_item.price}}</s> ${{top_item.sell_price}} </p>
+                {% else %}
+                  <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">${{top_item.price}}</p>
+                {% endif %}
+                
+                </div>
               </div>
             </div>
-          </div>
-          <div class="slick_slide_in">
-            <div class="cs_product cs_style_1">
-              <div class="cs_product_thumb position-relative">
-                <img src="{% static "assets/img/product13.png" %}" alt="Product Image">
-                <div class="cs_cart_badge position-absolute">
-                  <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-heart"></i>
-                  </a>
-                  <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-eye"></i>
-                  </a>
-                </div>
-                <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">
-                  Add To Cart</a>
-              </div>
-              <div class="cs_product_info text-center">
-                <h3 class="cs_product_title cs_fs_21 cs_medium">
-                  <a href="product_details.html">Trendy shoulder bags for women</a>
-                </h3>
-                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$220.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="slick_slide_in">
-            <div class="cs_product cs_style_1">
-              <div class="cs_product_thumb position-relative">
-                <img src="{% static "assets/img/product14.png" %}" alt="Product Image">
-                <div class="cs_cart_badge position-absolute">
-                  <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-heart"></i>
-                  </a>
-                  <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-eye"></i>
-                  </a>
-                </div>
-                <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">
-                  Add To Cart</a>
-              </div>
-              <div class="cs_product_info text-center">
-                <h3 class="cs_product_title cs_fs_21 cs_medium">
-                  <a href="product_details.html">Purple elegance woman luxury bag</a>
-                </h3>
-                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$350.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="slick_slide_in">
-            <div class="cs_product cs_style_1">
-              <div class="cs_product_thumb position-relative">
-                <img src="{% static "assets/img/product15.png" %}" alt="Product Image">
-                <div class="cs_cart_badge position-absolute">
-                  <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-heart"></i>
-                  </a>
-                  <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-eye"></i>
-                  </a>
-                </div>
-                <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">
-                  Add To Cart</a>
-              </div>
-              <div class="cs_product_info text-center">
-                <h3 class="cs_product_title cs_fs_21 cs_medium">
-                  <a href="product_details.html">Classic leather tote bag</a>
-                </h3>
-                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$250.00</p>
-              </div>
-            </div>
-          </div>
-          <div class="slick_slide_in">
-            <div class="cs_product cs_style_1">
-              <div class="cs_product_thumb position-relative">
-                <img src="{% static "assets/img/product13.png" %}" alt="Product Image">
-                <div class="cs_cart_badge position-absolute">
-                  <a href="wishlist.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-heart"></i>
-                  </a>
-                  <a href="product_details.html" class="cs_cart_icon cs_accent_bg cs_white_color">
-                    <i class="fa-regular fa-eye"></i>
-                  </a>
-                </div>
-                <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">
-                  Add To Cart</a>
-              </div>
-              <div class="cs_product_info text-center">
-                <h3 class="cs_product_title cs_fs_21 cs_medium">
-                  <a href="product_details.html">Trendy shoulder bags for women</a>
-                </h3>
-                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">$220.00</p>
-              </div>
-            </div>
-          </div>
+          {% endfor %} 
+
+
         </div>
       </div>
       <div class="cs_pagination cs_style_2 cs_hide_desktop"></div>

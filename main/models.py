@@ -13,10 +13,10 @@ class Mailing(models.Model):
 
 class Comment(models.Model):
 
-    name = models.CharField(max_length=150, unique=True, verbose_name='Название')
-    coment = models.TextField(blank=True, null=True, verbose_name='Коментарий')
-    image = models.ImageField(upload_to='goods_images', blank=True, null=True, verbose_name='Фото')
-    city = models.TextField(blank=True, null=True, verbose_name='Город')
+    text = models.TextField(blank=True, null=True, verbose_name='Коментарий')
+    image = models.ImageField(upload_to='comment_user_images', blank=True, null=True, verbose_name='Фото')
+    name = models.CharField(max_length=150, unique=True, verbose_name='Пользователь')
+    city = models.CharField(max_length=150, unique=False, blank=True, null=True, verbose_name='Город')
 
 
     class Meta:
@@ -26,5 +26,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.name
+    
+
 
 
