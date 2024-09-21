@@ -4,6 +4,8 @@
 {% block content_one %}
 {% comment %} Контент перед What Our People Says {% endcomment %}
 
+
+
   <!-- Start hero -->
   <section class="cs_slider position-relative">
     <div class="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="800" data-center="0" data-slides-per-view="1" data-fade-slide="0">
@@ -223,7 +225,7 @@
                       </div>
                       <div class="cs_product_info text-center">
                         <h3 class="cs_product_title cs_fs_21 cs_medium">
-                          <a href="{% url "goods:product" jeanss.id %}">{{jeanss.name}}</a>
+                          <a href="{% url "goods:product" jeanss.slug %}">{{jeanss.name}}</a>
                         </h3>    
                       {% if jeanss.discount %}
                         <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{jeanss.price}}</s> ${{jeanss.sell_price}} </p>
@@ -282,7 +284,7 @@
                       </div>
                       <div class="cs_product_info text-center">
                         <h3 class="cs_product_title cs_fs_21 cs_medium">
-                          <a href="{% url "goods:product" t_shirt.id %}">{{t_shirt.name}}</a>
+                          <a href="{% url "goods:product" t_shirt.slug %}">{{t_shirt.name}}</a>
                         </h3>    
                       {% if t_shirt.discount %}
                         <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{t_shirt.price}}</s> ${{t_shirt.sell_price}} </p>
@@ -342,7 +344,7 @@
                       </div>
                       <div class="cs_product_info text-center">
                         <h3 class="cs_product_title cs_fs_21 cs_medium">
-                          <a href="{% url "goods:product" shirt.id %}">{{shirt.name}}</a>
+                          <a href="{% url "goods:product" shirt.slug %}">{{shirt.name}}</a>
                         </h3>    
                       {% if shirt.discount %}
                         <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{shirt.price}}</s> ${{shirt.sell_price}} </p>
@@ -401,7 +403,7 @@
                       </div>
                       <div class="cs_product_info text-center">
                         <h3 class="cs_product_title cs_fs_21 cs_medium">
-                          <a href="{% url "goods:product" dress.id %}">{{dress.name}}</a>
+                          <a href="{% url "goods:product" dress.slug %}">{{dress.name}}</a>
                         </h3>    
                       {% if dress.discount %}
                         <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{dress.price}}</s> ${{dress.sell_price}} </p>
@@ -459,7 +461,7 @@
                       </div>
                       <div class="cs_product_info text-center">
                         <h3 class="cs_product_title cs_fs_21 cs_medium">
-                          <a href="{% url "goods:product" suit.id %}">{{suit.name}}</a>
+                          <a href="{% url "goods:product" suit.slug %}">{{suit.name}}</a>
                         </h3>    
                       {% if suit.discount %}
                         <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{suit.price}}</s> ${{suit.sell_price}} </p>
@@ -517,7 +519,7 @@
                       </div>
                       <div class="cs_product_info text-center">
                         <h3 class="cs_product_title cs_fs_21 cs_medium">
-                          <a href="{% url "goods:product" accessor.id %}">{{accessor.name}}</a>
+                          <a href="{% url "goods:product" accessor.slug %}">{{accessor.name}}</a>
                         </h3>    
                       {% if accessor.discount %}
                         <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{accessor.price}}</s> ${{accessor.sell_price}} </p>
@@ -661,7 +663,7 @@
               </div>
               <div class="cs_product_info text-center">
                 <h3 class="cs_product_title cs_fs_21 cs_medium">
-                  <a href="{% url "goods:product" new_item.id %}">{{new_item.name}}</a>
+                  <a href="{% url "goods:product" new_item.slug %}">{{new_item.name}}</a>
                 </h3>
 
               {% if new_item.discount %}
@@ -844,7 +846,7 @@
                 </div>
                 <div class="cs_product_info text-center">
                   <h3 class="cs_product_title cs_fs_21 cs_medium">
-                    <a href="{% url "goods:product" top_item.id %}">{{top_item.name}}</a>
+                    <a href="{% url "goods:product" top_item.slug %}">{{top_item.name}}</a>
                   </h3>
 
                 {% if top_item.discount %}
