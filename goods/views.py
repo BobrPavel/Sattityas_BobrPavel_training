@@ -1,14 +1,21 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 
-from goods.models import Products
+from goods.models import Products, Categories, People_categorys
 
 
 def catalog(request):
 
+    page = request.GET.get('page', 1)
+
     goods = Products.objects.all()
 
+    paginator = Paginator(goods, 8)
+    current_page = paginator.page(int(page))
+
+
     context = {
-        "goods":goods,
+        "goods":current_page,
     }
 
     return render(request, 'goods/catalog.html', context)

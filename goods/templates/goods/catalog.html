@@ -264,7 +264,7 @@
                   </div>
                 </li>
               </ul>
-              <a href="{% url "goods:index" %}" class="cs_btn cs_style_1 cs_fs_16 cs_medium">Shop Now</a>
+              <a href="{% url "main:index" %}" class="cs_btn cs_style_1 cs_fs_16 cs_medium">Shop Now</a>
             </div>
           </div>
         </div>
@@ -377,13 +377,39 @@
           </div>
         {% endfor %}
       </div>
+      
+      <!-- Пагинация -->
       <div class="cs_height_75 cs_height_lg_50"></div>
       <ul class="cs_pagination cs_fs_21 cs_semibold cs_mp0">
-        <li class="cs_page_item active"><a class="cs_page_link" href="#">01</a></li>
-        <li class="cs_page_item"><a class="cs_page_link" href="#">02</a></li>
-        <li class="cs_page_item"><a class="cs_page_link" href="#">03</a></li>
-        <li class="cs_page_item"><a class="cs_page_link" href="#"><i class="fa-solid fa-arrow-right"></i></a></li>
+
+        {% if goods.has_previous %} 
+          <li class="cs_page_item  ">
+            <a class="cs_page_link" href="{% if goods.has_previous %}?page={{goods.previous_page_number}{% else %}
+              #
+            {% endif %}"><i class="fa-solid fa-arrow-left"></i></a>
+          </li>
+
+        {% endif %} 
+        {% for page in goods.paginator.page_range  %}
+          {% if page >= goods.number|add:-2 and page <= goods.number|add:2 %}
+            <li class="cs_page_item {% if goods.number == page %} active {% endif %}"  >
+              <a class="cs_page_link" href="?page={{page}}">{{ page }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+        {% if goods.has_next %} 
+          <li class="cs_page_item  ">
+            <a class="cs_page_link" href="{% if goods.has_next %}?page={{goods.next_page_number}}{% else %}
+             #
+            {% endif %}"><i class="fa-solid fa-arrow-right"></i></a>
+          </li>
+        {% endif %} 
+        
+        
       </ul>
+
+
     </div>
     <div class="cs_height_140 cs_height_lg_80"></div>
     <hr>
