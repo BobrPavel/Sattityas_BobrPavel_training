@@ -286,42 +286,22 @@
       data-add-slides="1">
       <div class="container">
         <div class="cs_slider_wrapper">
+
+        {% for comments in coments %}
           <div class="slick_slide_in">
             <div class="cs_testimonial cs_style_1 text-center">
-              <blockquote class="cs_testimonial_text cs_fs_21 cs_semibold">Shopping at Sattiyas has been an absolute delight! I've had the pleasure of being a <br> customer for the past year, and I can confidently say that this is my go-to online shopping <br> destination. Highly recommend!</blockquote>
+              <blockquote class="cs_testimonial_text cs_fs_21 cs_semibold">{{comments.text}}</blockquote>
               <div class="cs_testimonial_user">
                 <div class="cs_avatar_thumb">
-                  <img src="{% static "assets/img/user.png" %}" alt="Avatar">
+                  <img src={{comments.image.url}} alt="Avatar">
                 </div>
-                <h4 class="cs_avatar_title cs_fs_21 cs_semibold mb-0">Bonal Ahmad</h4>
-                <p class="cs_avatar_subtitle mb-0">From London</p>
+                <h4 class="cs_avatar_title cs_fs_21 cs_semibold mb-0">{{comments.name}}</h4>
+                <p class="cs_avatar_subtitle mb-0">{{comments.city}}n</p>
               </div>
             </div>
           </div>
-          <div class="slick_slide_in">
-            <div class="cs_testimonial cs_style_1 text-center">
-              <blockquote class="cs_testimonial_text cs_fs_21 cs_semibold">Shopping at Sattiyas has been an absolute delight! I've had the pleasure of being a <br> customer for the past year, and I can confidently say that this is my go-to online shopping <br> destination. Highly recommend!</blockquote>
-              <div class="cs_testimonial_user">
-                <div class="cs_avatar_thumb">
-                  <img src="{% static "assets/img/user2.png" %}" alt="Avatar">
-                </div>
-                <h4 class="cs_avatar_title cs_fs_21 cs_semibold mb-0">Jhon Doe</h4>
-                <p class="cs_avatar_subtitle mb-0">From UK</p>
-              </div>
-            </div>
-          </div>
-          <div class="slick_slide_in">
-            <div class="cs_testimonial cs_style_1 text-center">
-              <blockquote class="cs_testimonial_text cs_fs_21 cs_semibold">Shopping at Sattiyas has been an absolute delight! I've had the pleasure of being a <br> customer for the past year, and I can confidently say that this is my go-to online shopping <br> destination. Highly recommend!</blockquote>
-              <div class="cs_testimonial_user">
-                <div class="cs_avatar_thumb">
-                  <img src="{% static "assets/img/user3.png" %}" alt="Avatar">
-                </div>
-                <h4 class="cs_avatar_title cs_fs_21 cs_semibold mb-0">Kalio Hokeo</h4>
-                <p class="cs_avatar_subtitle mb-0">From London</p>
-              </div>
-            </div>
-          </div>
+        {% endfor %}
+
         </div>
       </div>
     </div>

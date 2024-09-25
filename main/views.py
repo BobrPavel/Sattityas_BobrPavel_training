@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.template.defaulttags import comment
+
 
 from goods.models import Products
 from main.models import Comment
@@ -40,7 +42,19 @@ def index(request):
     return render(request, 'main/index.html', context)
 
 def about(request):
-    return render(request, 'main/about.html')
+
+
+    coments = Comment.objects.all()
+
+    print(coments)
+
+    context = {
+        
+        "coments":coments,
+        
+    }
+
+    return render(request, 'main/about.html', context)
 
 def contact(request):
     return render(request, 'main/contact.html')
