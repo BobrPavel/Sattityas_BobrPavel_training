@@ -17,7 +17,7 @@
     <div class="cs_height_140 cs_height_lg_80"></div>
     <div class="container-fluid">
 
-      <form action="{% url "goods:index" %}" method="get">
+      <form action="{% if request.GET.q %}{% url "catalog:search" %}{% else %}{% url "goods:index" %}{% endif %}" method="get">
         <div class="cs_shop_filter">
           <div class="cs_filter_overlay"></div>
           <button class="cs_filter_close">X</button>
@@ -36,6 +36,15 @@
                   </defs>
                 </svg>
                 <span>Filter</span>
+              </div>
+            </div>
+            <div class="cs_sort_wrap">
+              <div class="cs_sort">
+                <select name="order_by">
+                  <option value="default" {% if request.GET.order_by == 'default' %}selected{% endif %}>По умолчанию</option>
+                  <option value="price" {% if request.GET.order_by == 'price' %}selected{% endif %}>От дешёвого</option>
+                  <option value="-price" {% if request.GET.order_by == '-price' %}selected{% endif %}>От дорогоe</option>
+                </select>
               </div>
             </div>
             <div class="cs_filter_sidebar_in">
@@ -292,15 +301,7 @@
             <p class="cs_medium mb-0">Showing {{goods_all_count}} of {{goods_count}} results</p>
 
           </div>
-          <form action="{% url "goods:index" %}" method="get" class="cs_sort_wrap">
-            <div class="cs_sort">
-              <select name="order_by">
-                <option value="default" {% if request.GET.order_by == 'default' %}selected{% endif %}>По умолчанию</option>
-                <option value="price" {% if request.GET.order_by == 'price' %}selected{% endif %}>От дешёвого</option>
-                <option value="-price" {% if request.GET.order_by == '-price' %}selected{% endif %}>От дорогоe</option>
-              </select>
-              <button type="submit"> Применить </button>
-            </div>
+          <div class="cs_sort_wrap">
             <div class="cs_view">
               <span class="cs_viev_icon cs_grid_btn active">
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -321,7 +322,7 @@
                 </svg>
               </span>
             </div>
-          </form>
+          </div>
         </div>
       </div>
       <div class="cs_product_grid cs_product_grid_4 cs_grid_view">

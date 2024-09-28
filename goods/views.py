@@ -4,6 +4,7 @@ from django.db.models import F
 from django.shortcuts import render
 
 from goods.models import Products
+from goods.utils import q_search
 
 rating_list = []
 
@@ -16,7 +17,10 @@ def catalog(request):
     size = request.GET.get('size', None)
     brand =  request.GET.get('brand', None)
 
-    # переменные фильтвров chekbox (рейтинг, пол, категория одежды)
+    # переменная поиска
+    query = request.GET.get('q', None)
+
+# переменные фильтвров chekbox (рейтинг, пол, категория одежды)
 
         # переменные людей
     x = 3
@@ -45,8 +49,6 @@ def catalog(request):
     else:
         clothes_status = False
 
-    print(clothes_list)
-    print(clothes_status)
 
         # переменные рейтингов
     x = 5
@@ -66,8 +68,10 @@ def catalog(request):
     
 
 
-
-    goods = Products.objects.all()
+    if query:
+        goods = q_search(query)
+    else:
+        goods = Products.objects.all()
     
     if size and size != "Default":
         goods = goods.filter(sizе__exact=size)
@@ -86,6 +90,7 @@ def catalog(request):
 
     if order_by and order_by != "default":
         goods = goods.order_by(order_by)
+
 
 
 

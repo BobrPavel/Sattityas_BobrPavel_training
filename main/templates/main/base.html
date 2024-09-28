@@ -119,9 +119,11 @@
           </div>
           <div class="cs_main_header_right">
             <div class="cs_header_action">
+
               <button type="button" class="cs_action_icon cs_header_search_btn">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
+
               <a href="#" class="cs_action_icon cs_modal_btn">
                 <i class="fa-regular fa-circle-user"></i>
               </a>
@@ -153,8 +155,8 @@
             <h3>What are you looking for?</h3>
             <button class="cs_header_search_close" type="button"><i class="fa-solid fa-xmark"></i></button>
           </div>
-          <form action="#" class="cs_header_search_form">
-            <input type="text" placeholder="Search...">
+          <form action="{% url "goods:search" %}" method="get" class="cs_header_search_form">
+            <input type="search" name="q" placeholder="Search...">
             <button type="submit">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
