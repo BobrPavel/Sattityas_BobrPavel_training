@@ -1,0 +1,26 @@
+[
+    {
+        "model": "goods.people_categorys",
+        "pk": 1,
+        "fields": {
+            "name": "Мужское",
+            "slug": "muzhskoe"
+        }
+    },
+    {
+        "model": "goods.people_categorys",
+        "pk": 2,
+        "fields": {
+            "name": "Женское",
+            "slug": "zhenskoe"
+        }
+    },
+    {
+        "model": "goods.people_categorys",
+        "pk": 3,
+        "fields": {
+            "name": "Детское",
+            "slug": "detskoe"
+        }
+    }
+]

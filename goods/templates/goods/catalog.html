@@ -38,16 +38,23 @@
                 <span>Filter</span>
               </div>
             </div>
-            <div class="cs_sort_wrap">
-              <div class="cs_sort">
-                <select name="order_by">
-                  <option value="default" {% if request.GET.order_by == 'default' %}selected{% endif %}>По умолчанию</option>
-                  <option value="price" {% if request.GET.order_by == 'price' %}selected{% endif %}>От дешёвого</option>
-                  <option value="-price" {% if request.GET.order_by == '-price' %}selected{% endif %}>От дорогоe</option>
-                </select>
-              </div>
-            </div>
             <div class="cs_filter_sidebar_in">
+
+
+              <div class="cs_filter_widget">
+                <h3 class="cs_filter_widget_title cs_medium cs_fs_18">Sort <span></span></h3>
+                  <div class="cs_sort_wrap">
+                    <div class="cs_sort">
+                      <select name="order_by">
+                        <option value="default" {% if request.GET.order_by == 'default' %}selected{% endif %}>По умолчанию</option>
+                        <option value="price" {% if request.GET.order_by == 'price' %}selected{% endif %}>От дешёвого</option>
+                        <option value="-price" {% if request.GET.order_by == '-price' %}selected{% endif %}>От дорогоe</option>
+                      </select>
+                    </div>
+                  </div>
+              </div>
+
+
               <div class="cs_filter_widget">
                 <h3 class="cs_filter_widget_title cs_medium cs_fs_18">Categories <span></span></h3>
                 <ul class="cs_filter_category cs_mp0">
@@ -298,7 +305,12 @@
         </div>
         <div class="cs_sort_section">
           <div class="cs_sort_number">
-            <p class="cs_medium mb-0">Showing {{goods_all_count}} of {{goods_count}} results</p>
+            {% if request.GET.q and not goods%}
+              <p class="cs_medium mb-0">По запросу {{request.GET.q}} ничего не найдено</p>
+            {% else %}
+              <p class="cs_medium mb-0">Showing {{goods_all_count}} of {{goods_count}} results</p>
+            {% endif %}
+            
 
           </div>
           <div class="cs_sort_wrap">
@@ -325,8 +337,8 @@
           </div>
         </div>
       </div>
-      <div class="cs_product_grid cs_product_grid_4 cs_grid_view">
-        
+
+      <div class="cs_product_grid cs_product_grid_4 cs_grid_view">        
         <!-- Product cart -->
         {% for product in goods %}
           <div class="cs_product_col">

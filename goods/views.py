@@ -1,6 +1,4 @@
-from re import S
 from django.core.paginator import Paginator
-from django.db.models import F
 from django.shortcuts import render
 
 from goods.models import Products
