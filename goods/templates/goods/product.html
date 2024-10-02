@@ -100,7 +100,7 @@
                 <span class="cs_quantity_input">1</span>
                 <button class="cs_quantity_btn cs_decrement"><i class="fa-solid fa-angle-down"></i></button>
               </div>
-              <a href="#" class="cs_btn cs_style_1 cs_fs_16 cs_medium">Add to Cart</a>
+              <a href="{% url "cart:cart_add" product.slug %}" class="cs_btn cs_style_1 cs_fs_16 cs_medium">Add to Cart</a>
             </div>
             <ul class="cs_single_product_info">
               <li class="cs_fs_16 cs_normal">
