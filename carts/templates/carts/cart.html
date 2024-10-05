@@ -47,15 +47,15 @@
                 </td>
                 <td>{{cart.product.sell_price}}</td>
                 <td>
-                  <div class="cs_quantity">
-                    <button class="cs_quantity_btn cs_increment"><i class="fa-solid fa-angle-up"></i></button>
+                  <form class="cs_quantity" action="{% url "carts:cart_change" cart.id  %}" method="get">
+                    <button type="submit" class="cs_quantity_btn cs_increment" name="quantity" value="+1"><i class="fa-solid fa-angle-up"></i></button>
                       <span class="cs_quantity_input" value={{cart.quantity}}>{{cart.quantity}}</span>
-                    <button class="cs_quantity_btn cs_decrement"><i class="fa-solid fa-angle-down"></i></button>
-                  </div>
+                    <button type="submit" class="cs_quantity_btn cs_decrement" name="quantity" value="-1"><i class="fa-solid fa-angle-down"></i></button>
+                  </form>
                 </td>
                 <td>{{cart.product_price}}</td>
                 <td class="text-center">
-                  <button href="{% url "cart:cart_remove" 1 %}" class="cs_cart-table-close"><i class="fa-solid fa-xmark"></i></button>
+                  <a href="{% url "carts:cart_remove" cart.id %}" class="cs_cart-table-close"><i class="fa-solid fa-xmark"></i></a>
                 </td>
               </tr>
             {% endfor %}
@@ -78,12 +78,12 @@
             <table class="cs_medium">
               <tbody>
                 <tr>
-                  <td>Subtotal</td>
-                  <td class="text-end">$605.00</td>
+                  <td>Кол-во</td>
+                  <td class="text-end">{{carts.total_quantity}}</td>
                 </tr>
                 <tr>
                   <td>Total</td>
-                  <td class="text-end">$605.00</td>
+                  <td class="text-end">${{carts.total_price}}</td>
                 </tr>
               </tbody>
             </table>

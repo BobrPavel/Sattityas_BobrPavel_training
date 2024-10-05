@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import redirect, render
 
 from carts.models import Cart
@@ -39,9 +40,24 @@ def cart_add(request, product_slug):
 
 
 
-def cart_change(request, product_slug):
-    ...
+def cart_change(request, cart_id):
+
+    quanti = request.GET.get('quantity', None)
+    cart = Cart.objects.get(id=cart_id)
+    
+    quanti = int(quanti)
+    x = cart.quantity + quanti
+    if x == 0:
+        cart.delete()
+    else:
+        cart.quantity += 1
+        cart.save()        
+
+    return redirect(request.META['HTTP_REFERER']) 
 
 
-def cart_remove(request, product_slug):
-    ...
+def cart_remove(request, cart_id):
+    cart = Cart.objects.get(id=cart_id)
+    cart.delete()
+    return redirect(request.META['HTTP_REFERER']) 
+    
