@@ -22,12 +22,15 @@ class Cart(models.Model):
 
     class Meta:
         db_table = 'cart'
-        verbose_name = 'Корзина'
-        verbose_name_plural = 'Корзина'
+        verbose_name = 'корзину'
+        verbose_name_plural = 'Корзины'
 
     objects = CartQueryset().as_manager()
 
     def product_price(self):
         return round(self.product.sell_price() * self.quantity, 2)
+    
+    def __str__(self):
+        return f'Анонимная корзина | {self.product.name} | Количество {self.quantity}'
     
     
