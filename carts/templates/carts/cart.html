@@ -68,11 +68,6 @@
       <div class="col-xl-4">
         <div class="cs_shop-side-spacing">
           <div class="cs_shop-card">
-            <h2 class="cs_fs_21 cs_medium">Coupon Code</h2>
-            <form action="#" class="cs_coupon-doce-form">
-              <input type="text" placeholder="Coupon Code">
-              <button class="cs_product_btn cs_color1 cs_semi_bold">Apply</button>
-            </form>
             <div class="cs_height_30 cs_height_lg_30"></div>
             <h2 class="cs_fs_21 cs_medium">Cart Totals</h2>
             <table class="cs_medium">
@@ -88,7 +83,7 @@
               </tbody>
             </table>
             <div class="cs_height_30 cs_height_lg_30"></div>
-            <a href="checkout.html" class="cs_btn cs_style_1 cs_fs_16 cs_medium w-100">Procced To Checkout</a>
+            <a href="{% url "orders:create_order" %}" class="cs_btn cs_style_1 cs_fs_16 cs_medium w-100">Procced To Checkout</a>
           </div>
           <div class="cs_height_30 cs_height_lg_30"></div>
         </div>

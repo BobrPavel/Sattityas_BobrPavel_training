@@ -1,4 +1,3 @@
-from django.db.models import Q
 from django.shortcuts import redirect, render
 
 from carts.models import Cart
@@ -8,7 +7,6 @@ from goods.models import Products
 
 def users_carts(request):
     carts = Cart.objects.filter(session_key=request.session.session_key)
-    print(carts)
 
     context = {
         'carts' : carts,

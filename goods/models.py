@@ -20,7 +20,7 @@ class People_categorys(models.Model):
     slug = models.SlugField(max_length=200, unique=True, blank=True, null=True, verbose_name='URL')
 
     class Meta:
-        db_table = 'зeople_category'
+        db_table = 'people_category'
         verbose_name = 'пол'
         verbose_name_plural = 'Полы'
 
@@ -60,7 +60,7 @@ class Products(models.Model):
         return reverse("catalog:product", kwargs={"product_slug": self.slug})
     
 
-
+ 
     def display_id(self):
         return f'{self.id:05}'
     
@@ -69,4 +69,6 @@ class Products(models.Model):
             return round(self.price - self.price * self.discount / 100, 2)
         
         return self.price
+    
+        
     
