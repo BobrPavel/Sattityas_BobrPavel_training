@@ -11,3 +11,4 @@ class CreateOrderForms(forms.Form):
     phone_number = forms.CharField()
     email = forms.CharField()
     additional_inforation = forms.CharField(required=False)    
+

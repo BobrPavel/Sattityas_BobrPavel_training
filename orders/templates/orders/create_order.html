@@ -38,7 +38,7 @@
           <div class="row">
             <div class="col-lg-6">
               <label for="id_first_name" class="cs_shop-label">First Name *</label>
-              <input type="text" class="cs_shop-input" id="id_first_name" name="first_name" required>
+              <input type="text" class="cs_shop-input" id="id_first_name" value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}" name="first_name" required>
               {% if form.first_name.errors %}
                 <div class="alert alert-danger alert-dismissible fade show">{{form.first_name.errors}}</div>
               {% endif %}
@@ -46,49 +46,49 @@
             <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
             <div class="col-lg-6">
               <label for="id_last_name" class="cs_shop-label">Last Name *</label>
-              <input type="text" class="cs_shop-input" id="id_last_name" name="last_name" required>
+              <input type="text" class="cs_shop-input" id="id_last_name" value="{% if form.last_name.value %}{{ form.last_name.value }}{% endif %}" name="last_name" required>
               {% if form.last_name.errors %}
                 <div class="alert alert-danger alert-dismissible fade show">{{form.last_name.errors}}</div>
               {% endif %}
             </div>
             <div class="col-lg-12">
               <label for="id_company_name" class="cs_shop-label">Company name (optional)</label>
-              <input type="text" class="cs_shop-input" id="id_company_name" name="company_name">
+              <input type="text" class="cs_shop-input" id="id_company_name" value="{% if form.company_name.value %}{{ form.company_name.value }}{% endif %}" name="company_name" >
               {% if form.company_name.errors %}
                 <div class="alert alert-danger alert-dismissible fade show">{{form.company_name.errors}}</div>
               {% endif %}
             </div>
             <div class="col-lg-12">
-              <label for="id_street_address" class="cs_shop-label">Address *</label>
-              <input type="text" id="id_street_address" name="adress" required class="cs_shop-input" placeholder="Введите адресс">
+              <label for="id_delivery_address" class="cs_shop-label">Address *</label>
+              <input type="text" class="cs_shop-input" id="id_delivery_address" value="{% if form.delivery_address.value %}{{ form.delivery_address.value }}{% endif %}" name="delivery_address" placeholder="Введите адресс" required>
               {% if form.delivery_address.errors %}
                 <div class="alert alert-danger alert-dismissible fade show">{{form.delivery_address.errors}}</div>
               {% endif %}
             </div>
             <div class="col-lg-12">
               <label for="city" class="cs_shop-label">Town / City *</label>
-              <input type="text" id="id_city" name="city" required class="cs_shop-input">
+              <input type="text"  class="cs_shop-input" id="id_city" value="{% if form.city.value %}{{ form.city.value }}{% endif %}" name="city" required>
               {% if form.city.errors %}
                 <div class="alert alert-danger alert-dismissible fade show">{{form.city.errors}}</div>
              {% endif %}
             </div>
             <div class="col-lg-12">
               <label for="id_index" class="cs_shop-label">ZIP Code *</label>
-              <input type="text" id="id_index" name="index" required class="cs_shop-input">
-              {% if form.index_cod.errors %}
-                <div class="alert alert-danger alert-dismissible fade show">{{form.index_cod.errors}}</div>
-              {% endif %}
+              <input type="text" class="cs_shop-input" id="id_index" value="{% if form.index_cod.value %}{{ form.index_cod.value }}{% endif %}" name="index_cod" required>
+              {% if form.index.errors %}
+                <div class="alert alert-danger alert-dismissible fade show">{{form.index.errors}}</div>
+             {% endif %}
             </div>
             <div class="col-lg-12">
               <label for="id_phone" class="cs_shop-label">Phone *</label>
-              <input type="text" id="id_phone" name="phone" required class="cs_shop-input">
+              <input type="text" class="cs_shop-input" id="id_phone" value="{% if form.phone_number.value %}{{ form.phone_number.value }}{% endif %}" name="phone_number" required>
               {% if form.phone_number.errors %}
                 <div class="alert alert-danger alert-dismissible fade show">{{form.phone_number.errors}}</div>
              {% endif %}
             </div>
             <div class="col-lg-12">
               <label for="id_email" class="cs_shop-label">Email address *</label>
-              <input type="text" id="id_email" name="email" required class="cs_shop-input">
+              <input type="text" class="cs_shop-input" id="id_email" value="{% if form.email.value %}{{ form.email.value }}{% endif %}" name="email" required>
               {% if form.email.errors %}
                 <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
               {% endif %}
@@ -98,7 +98,7 @@
           <h2 class="cs_checkout-title">Additional information</h2>
           <div class="cs_height_25 cs_height_lg_25"></div>
           <label for="id_additional_inforation" name="additional_inforation" class="cs_shop-label">Order notes (optional)</label>
-          <textarea id="id_additional_inforation" name="additional_inforation" cols="30" rows="6" class="cs_shop-input"></textarea>
+          <textarea  class="cs_shop-input" id="id_additional_inforation" cols="30" rows="6" value="{% if form.additional_inforation.value %}{{ form.additional_inforation.value }}{% endif %}" name="additional_inforation" required></textarea>
           {% if form.additional_inforation.errors %}
             <div class="alert alert-danger alert-dismissible fade show">{{form.additional_inforation.errors}}</div>
           {% endif %}
@@ -135,7 +135,7 @@
       <!-- Конец корзины на странице оформления заказа -->  
       <!-- Оставить заказ + ссылка на оплату -->              
               <div class="cs_height_30 cs_height_lg_30"></div>
-              <a href="success.html" class="cs_btn cs_style_1 cs_fs_16 cs_medium w-100">Place Order</a>
+              <button type="submit" href="{% url "orders:create_order" %}" class="cs_btn cs_style_1 cs_fs_16 cs_medium w-100">Place Order</button>
             </div>
           </div>
         </div>
