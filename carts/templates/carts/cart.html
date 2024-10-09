@@ -83,7 +83,9 @@
               </tbody>
             </table>
             <div class="cs_height_30 cs_height_lg_30"></div>
-            <a href="{% url "orders:create_order" %}" class="cs_btn cs_style_1 cs_fs_16 cs_medium w-100">Procced To Checkout</a>
+            {% if carts %}
+              <a href="{% url "orders:create_order" %}" class="cs_btn cs_style_1 cs_fs_16 cs_medium w-100">Procced To Checkout</a>
+            {% endif %}
           </div>
           <div class="cs_height_30 cs_height_lg_30"></div>
         </div>

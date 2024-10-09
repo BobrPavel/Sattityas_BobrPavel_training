@@ -9,7 +9,7 @@ class Mailing(models.Model):
         verbose_name_plural = 'Адресса'
     
     def __str__(self):
-        return self.name
+        return f'{self.id} | {self.email}'
 
 class Comment(models.Model):
 

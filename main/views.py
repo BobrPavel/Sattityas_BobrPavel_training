@@ -1,11 +1,23 @@
+from django.contrib import messages
 from django.shortcuts import render
 from django.template.defaulttags import comment
 
 
 from goods.models import Products
-from main.models import Comment
+from main.form import CreateEmailForms
+from main.models import Comment, Mailing
 
 def index(request):
+
+    if request.method == "POST":
+        form = CreateEmailForms(data=request.POST)
+        if form.is_valid():
+            maill = Mailing.objects.create(
+                email=form.cleaned_data['email'],
+            )
+            
+            messages.success(request, 'Сообщение отправлено!')
+
 
     coments = Comment.objects.all()
     goods = Products.objects.all()
@@ -33,28 +45,19 @@ def index(request):
         "dresses":dresses,
         "suits":suits,
         "accessories":accessories,
-
-
     }
-
-
 
     return render(request, 'main/index.html', context)
 
+
 def about(request):
-
-
     coments = Comment.objects.all()
 
-    print(coments)
-
     context = {
-        
-        "coments":coments,
-        
+        "coments":coments,  
     }
-
     return render(request, 'main/about.html', context)
+
 
 def contact(request):
     return render(request, 'main/contact.html')
