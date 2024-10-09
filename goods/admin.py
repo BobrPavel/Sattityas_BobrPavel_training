@@ -1,5 +1,3 @@
-from os import name
-from unicodedata import category
 from django.contrib import admin
 
 from goods.models import Categories, Products, People_categorys

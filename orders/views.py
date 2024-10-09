@@ -25,9 +25,7 @@ def create_order(request):
                             
                             first_name=form.cleaned_data['first_name'],
                             last_name=form.cleaned_data['last_name'],
-                            company_name=form.cleaned_data['company_name'],
                             delivery_address=form.cleaned_data['delivery_address'],
-                            city=form.cleaned_data['city'],
                             index_cod=form.cleaned_data['index_cod'],
                             phone_number=form.cleaned_data['phone_number'],
                             email=form.cleaned_data['email'],
