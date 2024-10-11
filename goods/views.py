@@ -1,5 +1,9 @@
+
 from django.core.paginator import Paginator
+from django.db.models.base import Model as Model
 from django.shortcuts import render
+
+from django.views.generic import DetailView
 
 from goods.models import Products
 from goods.utils import q_search
@@ -103,6 +107,7 @@ def catalog(request):
         goods_status = False
 
     context = {
+        'title':"Каталог - Sattiyas - Fashion",
         "goods":current_page,
         "goods_count":goods_count,
         "goods_all_count":goods_all_count,
@@ -112,16 +117,18 @@ def catalog(request):
     return render(request, 'goods/catalog.html', context)
 
 
-def product(request, product_slug):
+class ProductView(DetailView):
 
+    template_name = 'goods/product.html'
+    slug_url_kwarg = 'product_slug'
+    context_object_name = 'product'
 
+    def  get_object(self, queryset=None):
+        product = Products.objects.get(slug=self.kwargs.get(self.slug_url_kwarg))
+        return product
 
-    product = Products.objects.get(slug=product_slug)
-    top_items = Products.objects.filter(top_item=True)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.object.name
+        return context
 
-    context = {
-        'product':product,
-        "top_items":top_items,
-    }
-
-    return render(request, 'goods/product.html', context)

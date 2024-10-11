@@ -1,11 +1,31 @@
+from typing import Any
 from django.contrib import messages
 from django.shortcuts import render
-from django.template.defaulttags import comment
+from django.views.generic import TemplateView
 
 
 from goods.models import Products
 from main.form import CreateEmailForms
 from main.models import Comment, Mailing
+
+
+class ContactView(TemplateView):
+    template_name = 'main/contact.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = "Контакты Sattiyas - Fashion"
+        return context
+
+
+    # 'title':"О нас Sattiyas - Fashion",
+
+
+#def contact(request):
+#    
+#    return render(request, 'main/contact.html')
+
+
 
 def index(request):
 
@@ -34,6 +54,7 @@ def index(request):
 
 
     context = {
+        'title':"Главная Sattiyas - Fashion",
         "goods":goods,
         "coments":coments,
         "new_items":new_items,
@@ -54,10 +75,9 @@ def about(request):
     coments = Comment.objects.all()
 
     context = {
+        'title':"О нас Sattiyas - Fashion",
         "coments":coments,  
     }
     return render(request, 'main/about.html', context)
 
 
-def contact(request):
-    return render(request, 'main/contact.html')

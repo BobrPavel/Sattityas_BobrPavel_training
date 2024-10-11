@@ -8,7 +8,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Laralink">
-  <title>Sattiyas - Fashion & Jewelry</title>
+  <title>{{title}}</title>
   <!-- Favicon -->
   <link rel="shortcut icon" href="{% static "assets/img/FAVICON.svg" %}">
   <!-- Plugins css -->
@@ -89,7 +89,7 @@
       <div class="container-fluid">
         <div class="cs_main_header_in">
           <div class="cs_main_header_left">
-            <a class="cs_site_branding" href="index.html">
+            <a class="cs_site_branding" href="{% url "main:index" %}">
               <img src="{% static "assets/img/logo.svg" %}" alt="Logo">
             </a>
           </div>
@@ -154,7 +154,7 @@
   <!-- End header -->
 
 {% block content_one %}
-{% comment %} Контент перед What Our People Says {% endcomment %}
+{% comment %} Контент {% endcomment %}
 {% endblock  %}
 
   
@@ -166,7 +166,6 @@
         <div class="row">
           <div class="col-xxl-3 col-lg-3">
             <div class="cs_footer_widget cs_text_widget">
-              <img src="{% static "assets/img/logo_dark.svg" %}" alt="Logo">
               <p>Discover endless delights your one stop eCommerce destination.</p>
               <img src="{% static "assets/img/payment_method.svg" %}" alt="Payment">
             </div>
