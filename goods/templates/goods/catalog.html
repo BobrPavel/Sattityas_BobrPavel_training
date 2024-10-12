@@ -398,25 +398,25 @@
         <div class="cs_height_75 cs_height_lg_50"></div>
         <ul class="cs_pagination cs_fs_21 cs_semibold cs_mp0">
 
-        {% if goods.has_previous %} 
+        {% if page_obj.has_previous %} 
           <li class="cs_page_item  ">
-            <a class="cs_page_link" href="{% if goods.has_previous %}?{% change_params page=goods.previous_page_number %}{% else %}
+            <a class="cs_page_link" href="{% if page_obj.has_previous %}?{% change_params page=page_obj.previous_page_number %}{% else %}
               #
             {% endif %}"><i class="fa-solid fa-arrow-left"></i></a>
           </li>
 
         {% endif %} 
-        {% for page in goods.paginator.page_range  %}
-          {% if page >= goods.number|add:-2 and page <= goods.number|add:2 %}
-            <li class="cs_page_item {% if goods.number == page %} active {% endif %}"  >
+        {% for page in page_obj.paginator.page_range  %}
+          {% if page >= page_obj.number|add:-2 and page <= page_obj.number|add:2 %}
+            <li class="cs_page_item {% if page_obj.number == page %} active {% endif %}"  >
               <a class="cs_page_link" href="?{% change_params page=page %}">{{ page }}</a>
             </li>
           {% endif %}
         {% endfor %}
 
-        {% if goods.has_next %} 
+        {% if page_obj.has_next %} 
           <li class="cs_page_item  ">
-            <a class="cs_page_link" href="{% if goods.has_next %}?{% change_params page=goods.next_page_number %}{% else %}
+            <a class="cs_page_link" href="{% if page_obj.has_next %}?{% change_params page=page_obj.next_page_number %}{% else %}
              #
             {% endif %}"><i class="fa-solid fa-arrow-right"></i></a>
           </li>
