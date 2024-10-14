@@ -16,7 +16,7 @@ class CreateOrderForms(forms.Form):
 
     #валидаторы  
     def clean_phone_number(self):
-        data = self.cleanned_data['phone_number']
+        data = self.cleaned_data['phone_number']
 
         if not data.isdigit():
             raise forms.ValidationError("Номер телефона должен содержать только цифры")
