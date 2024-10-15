@@ -15,7 +15,7 @@ from orders.models import Order, OrderItem
 class CreateOrderView(FormView):
     template_name = "orders/create_order.html"
     form_class = CreateOrderForms
-    success_url = reverse_lazy("main:index")
+    success_url = reverse_lazy('main:index')
 
     def form_valid(self, form):
         try:

@@ -1,26 +1,42 @@
 from django.shortcuts import redirect, render
+from django.views import View
+from django.views.generic import ListView
 
 from carts.models import Cart
-from carts.utils import get_user_carts
 from goods.models import Products
 
+class UserCartView(ListView):
+    template_name = 'carts/cart.html'   
+    context_object_name = 'carts'
 
-def users_carts(request):
-    carts = Cart.objects.filter(session_key=request.session.session_key)
+    def get_queryset(self):
+        carts = Cart.objects.filter(session_key=self.request.session.session_key)
+        return carts
 
-    context = {
-        'carts' : carts,
-    }
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Ваша корзина:Sattiyas - Fashion'
+        return context
 
-    return render(request, 'carts/cart.html', context)
 
+# class CardAdd(View):
+#     def post(self, request):
+#         product = Products.objects.get(slug=product_slug)
+
+#         carts = Cart.objects.filter(session_key=request.session.session_key, product=product)
+#         if carts.exists():
+#             cart = carts.first()
+#             if cart:
+#                 cart.quantity += 1
+#                 cart.save()
+#             else:
+#                 Cart.objects.create(session_key=request.session.session_key, product=product, quantity=1)
+        
+#         return redirect(request.META['HTTP_REFERER'])
 
 def cart_add(request, product_slug):
 
-    #product_id = request.POST.get("product_id")
-    user_cart = get_user_carts(request)
-
-    product = product = Products.objects.get(slug=product_slug)
+    product = Products.objects.get(slug=product_slug)
     
     carts = Cart.objects.filter(session_key=request.session.session_key, product=product)
 

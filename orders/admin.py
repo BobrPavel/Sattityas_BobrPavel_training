@@ -50,6 +50,8 @@ class OrderAdmin(admin.ModelAdmin):
     ]
     search_fields = [
         'id',
+        'first_name',
+        'last_name',
     ]
     readonly_fields = ("created_timestamp",)
     list_filter = [
