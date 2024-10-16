@@ -31,6 +31,7 @@
     {% csrf_token %}
     <div class="container">
       <div class="row">
+        
         <div class="col-xl-7">
           <div class="cs_height_40 cs_height_lg_40"></div>
           <h2 class="cs_checkout-title cs_fs_28">Billing Details</h2>
@@ -41,8 +42,7 @@
               <input type="text" class="cs_shop-input" id="id_first_name" value="{% if form.first_name.value %}{{ form.first_name.value }}{% endif %}" name="first_name" required>
               {% if form.first_name.errors %}
                 <div class="alert alert-danger alert-dismissible fade show">{{form.first_name.errors}}</div>
-              {% endif %}
-            </div>
+              {% endif %}          
             <div data-lastpass-icon-root="true" style="position: relative !important; height: 0px !important; width: 0px !important; float: left !important;"></div></div>
             <div class="col-lg-6">
               <label for="id_last_name" class="cs_shop-label">Last Name *</label>
@@ -51,36 +51,37 @@
                 <div class="alert alert-danger alert-dismissible fade show">{{form.last_name.errors}}</div>
               {% endif %}
             </div>
-            <div class="col-lg-12">
-              <label for="id_delivery_address" class="cs_shop-label">Address *</label>
-              <input type="text" class="cs_shop-input" id="id_delivery_address" value="{% if form.delivery_address.value %}{{ form.delivery_address.value }}{% endif %}" name="delivery_address" placeholder="Введите адресс" required>
-              {% if form.delivery_address.errors %}
-                <div class="alert alert-danger alert-dismissible fade show">{{form.delivery_address.errors}}</div>
-              {% endif %}
-            </div>
-            <div class="col-lg-12">
-              <label for="id_index" class="cs_shop-label">ZIP Code *</label>
-              <input type="text" class="cs_shop-input" id="id_index" value="{% if form.index_cod.value %}{{ form.index_cod.value }}{% endif %}" name="index_cod" required>
-              {% if form.index.errors %}
-                <div class="alert alert-danger alert-dismissible fade show">{{form.index.errors}}</div>
-             {% endif %}
-            </div>
-            <div class="col-lg-12">
-              <label for="id_phone" class="cs_shop-label">Phone *</label>
-              <input type="text" class="cs_shop-input" id="id_phone" value="{% if form.phone_number.value %}{{ form.phone_number.value }}{% endif %}"
-              placeholder="В формате: XXX-XXX-XX-XX" name="phone_number" required>
-              {% if form.phone_number.errors %}
-                <div class="alert alert-danger alert-dismissible fade show">{{form.phone_number.errors}}</div>
-             {% endif %}
-            </div>
-            <div class="col-lg-12">
-              <label for="id_email" class="cs_shop-label">Email address *</label>
-              <input type="text" class="cs_shop-input" id="id_email" value="{% if form.email.value %}{{ form.email.value }}{% endif %}" name="email" required>
-              {% if form.email.errors %}
-                <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
-              {% endif %}
-            </div>
           </div>
+          <div class="col-lg-12">
+            <label for="id_delivery_address" class="cs_shop-label">Address *</label>
+            <input type="text" class="cs_shop-input" id="id_delivery_address" value="{% if form.delivery_address.value %}{{ form.delivery_address.value }}{% endif %}" name="delivery_address" placeholder="Введите адресс" required>
+            {% if form.delivery_address.errors %}
+              <div class="alert alert-danger alert-dismissible fade show">{{form.delivery_address.errors}}</div>
+            {% endif %}
+          </div>
+          <div class="col-lg-12">
+            <label for="id_index" class="cs_shop-label">ZIP Code *</label>
+            <input type="text" class="cs_shop-input" id="id_index" value="{% if form.index_cod.value %}{{ form.index_cod.value }}{% endif %}" name="index_cod" required>
+            {% if form.index.errors %}
+              <div class="alert alert-danger alert-dismissible fade show">{{form.index.errors}}</div>
+           {% endif %}
+          </div>
+          <div class="col-lg-12">
+            <label for="id_phone" class="cs_shop-label">Phone *</label>
+            <input type="text" class="cs_shop-input" id="id_phone" value="{% if form.phone_number.value %}{{ form.phone_number.value }}{% endif %}"
+            placeholder="В формате: XXX-XXX-XX-XX" name="phone_number" required>
+            {% if form.phone_number.errors %}
+              <div class="alert alert-danger alert-dismissible fade show">{{form.phone_number.errors}}</div>
+           {% endif %}
+          </div>
+          <div class="col-lg-12">
+            <label for="id_email" class="cs_shop-label">Email address *</label>
+            <input type="email" class="cs_shop-input" id="id_email" value="{% if form.email.value %}{{ form.email.value }}{% endif %}" name="email" required>
+            {% if form.email.errors %}
+              <div class="alert alert-danger alert-dismissible fade show">{{form.email.errors}}</div>
+            {% endif %}
+          </div>
+ 
           <div class="cs_height_45 cs_height_lg_45"></div>
           <h2 class="cs_checkout-title">Additional information</h2>
           <div class="cs_height_25 cs_height_lg_25"></div>
@@ -90,9 +91,8 @@
             <div class="alert alert-danger alert-dismissible fade show">{{form.additional_inforation.errors}}</div>
           {% endif %}
           <div class="cs_height_30 cs_height_lg_30"></div>
-        </div>
-      
-      <!-- Корзина на странице оформления заказа -->      
+          <!-- Корзина на странице оформления заказа -->      
+        </div> 
         <div class="col-xl-5">
           <div class="cs_shop-side-spacing">
             <div class="cs_shop-card">
@@ -110,7 +110,7 @@
                     </tr>
                   {% endfor %}
                   <tr>
-                    <td class="cs_semi_bold">Количество</td>
+                    <td class="cs_semi_bold">Quantity</td>
                     <td class="text-end">{{carts.total_quantity}}</td>
                   </tr>
                   <tr class="cs_semi_bold">
@@ -119,15 +119,16 @@
                   </tr>
                 </tbody>
               </table>
-      <!-- Конец корзины на странице оформления заказа -->  
-      <!-- Оставить заказ + ссылка на оплату -->              
+              <!-- Конец корзины на странице оформления заказа -->  
+              <!-- Оставить заказ + ссылка на оплату -->              
               <div class="cs_height_30 cs_height_lg_30"></div>
               <button type="submit" href="{% url "orders:create_order" %}" class="cs_btn cs_style_1 cs_fs_16 cs_medium w-100">Place Order</button>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
-  </form>
+  </form>    
   <!-- Конец еста для заказа и ссылки на оплату -->      
 {% endblock  %}

@@ -123,14 +123,13 @@
   </section>
   <!-- End single product -->
   <!-- Start new item store -->
-  <section class="cs_slider container-fluid position-relative">
-    <div class="cs_height_120 cs_height_lg_70"></div>
+     <section class="cs_slider position-relative">
     <div class="container">
       <div class="cs_section_heading cs_style_1">
         <div class="cs_section_heading_in">
-          <h2 class="cs_section_title cs_fs_50 cs_bold cs_fs_48 cs_semibold mb-0">Top selling</h2>
+          <h2 class="cs_section_title cs_fs_50 cs_bold mb-0">Top selling</h2>
         </div>
-        <div class="cs_slider_arrows cs_style_2">
+        <div class="cs_slider_arrows cs_style_2 cs_hide_mobile">
           <div class="cs_left_arrow cs_slider_arrow cs_accent_color">
             <i class="fa-solid fa-chevron-left"></i>
           </div>
@@ -141,49 +140,53 @@
       </div>
       <div class="cs_height_63 cs_height_lg_35"></div>
     </div>
-    <div class="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="0"
-      data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="2" data-md-slides="2" data-lg-slides="3"
-      data-add-slides="4">
-      <div class="cs_slider_wrapper">
+     <div class="container-fluid">
+      <div class="cs_slider_container" data-autoplay="0" data-loop="1" data-speed="600" data-center="0"
+        data-slides-per-view="responsive" data-xs-slides="1" data-sm-slides="2" data-md-slides="2"
+        data-lg-slides="3" data-add-slides="4">
+        <div class="cs_slider_wrapper">
+          
+          {% for top_item in top_items %} 
+            <div class="slick_slide_in">
+              <div class="cs_product cs_style_1">
+                <div class="cs_product_thumb position-relative">
+                  {% if top_item.image %}
+                    <img src="{{top_item.image.url}}" alt="Product Image">
+                  {% else %}
+                    {% static "assets/img/Image_not_found.png" %}  
+                  {% endif %}
 
-        {% for top_item in top_items %} 
-          <div class="slick_slide_in">
-            <div class="cs_product cs_style_1">
-              <div class="cs_product_thumb position-relative">
-                {% if top_item.image %}
-                  <img src="{{top_item.image.url}}" alt="Product Image">
-                {% else %}
-                  {% static "assets/img/Image_not_found.png" %}  
-                {% endif %}
-              
-                {% if  top_item.discount %}
-                  <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">Скидка {{top_item.discount}}%</div>
-                {% endif %}
-              
-                <div class="cs_cart_badge position-absolute">
+                  {% if  top_item.discount %}
+                    <div class="cs_discount_badge cs_white_bg cs_fs_14 cs_primary_color position-absolute">Скидка {{top_item.discount}}%</div>
+                  {% endif %}
+
+                  <div class="cs_cart_badge position-absolute">
+                  </div>
+                  <a href="{% url "cart:cart_add" top_item.slug %}" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
                 </div>
-                <a href="cart.html" class="cs_cart_btn cs_accent_bg cs_fs_16 cs_white_color cs_medium position-absolute">Add To Cart</a>
-              </div>
-              <div class="cs_product_info text-center">
-                <h3 class="cs_product_title cs_fs_21 cs_medium">
-                  <a href="product_details.html">{{top_item.name}}</a>
-                </h3>
-              
-              {% if top_item.discount %}
-                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{top_item.price}}</s> ${{top_item.sell_price}} </p>
-              {% else %}
-                <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">${{top_item.price}}</p>
-              {% endif %}
-              
+                <div class="cs_product_info text-center">
+                  <h3 class="cs_product_title cs_fs_21 cs_medium">
+                    <a href="{% url "goods:product" top_item.slug %}">{{top_item.name}}</a>
+                  </h3>
+
+                {% if top_item.discount %}
+                  <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium"><s>${{top_item.price}}</s> ${{top_item.sell_price}} </p>
+                {% else %}
+                  <p class="cs_product_price cs_fs_18 cs_accent_color mb-0 cs_medium">${{top_item.price}}</p>
+                {% endif %}
+                
+                </div>
               </div>
             </div>
-          </div>
-        {% endfor %} 
+          {% endfor %} 
 
+
+        </div>
       </div>
-    </div>
-    <div class="cs_height_134 cs_height_lg_80"></div>
+      <div class="cs_pagination cs_style_2 cs_hide_desktop"></div>
+    </div>  
   </section>
+
   <!-- End new item store -->
   <hr>
 {% endblock  %}

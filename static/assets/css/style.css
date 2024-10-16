@@ -4023,6 +4023,7 @@ Slider arrow design
 .cs_btn.cs_style_1.cs_accent_btn {
   background-color: #fc5f49;
   border-color: #fc5f49;
+
 }
 .cs_btn.cs_style_1.cs_accent_btn:hover {
   background-color: transparent;
@@ -4036,6 +4037,7 @@ Slider arrow design
   background-color: #070707;
   color: #fff;
 }
+
 
 /*---------------------------------
  Single product page btn styling

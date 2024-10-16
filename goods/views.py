@@ -158,4 +158,5 @@ class ProductView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["title"] = self.object.name 
+        context["top_items"] = Products.objects.filter(top_item=True)
         return context
