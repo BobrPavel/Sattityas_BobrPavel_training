@@ -54,7 +54,7 @@
           </div>
           <div class="col-lg-12">
             <label for="id_delivery_address" class="cs_shop-label">Address *</label>
-            <input type="text" class="cs_shop-input" id="id_delivery_address" value="{% if form.delivery_address.value %}{{ form.delivery_address.value }}{% endif %}" name="delivery_address" placeholder="Введите адресс" required>
+            <input type="text" class="cs_shop-input" id="id_delivery_address" value="{% if form.delivery_address.value %}{{ form.delivery_address.value }}{% endif %}" name="delivery_address" required>
             {% if form.delivery_address.errors %}
               <div class="alert alert-danger alert-dismissible fade show">{{form.delivery_address.errors}}</div>
             {% endif %}
